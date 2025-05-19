@@ -33,11 +33,6 @@ namespace MDataCollector
         {
             String mqtt_server = ReadSetting("mqtt_server");
             MqttDataClient client = new MqttDataClient(mqtt_server);
-            /*
-                client.SetMqttServer("mqtt.cloudapps.cloud");
-                client.SetUserName("user");
-                client.SetPassword("password");
-            */
             client.MqttConnectAsync().Wait();
             var publishingTasks = new List<Task>();
             for (int i = 1; i <= 10; i++)
@@ -129,9 +124,8 @@ namespace MDataCollector
                         }
                      }
                 } catch {
-                    // Int32 _Ts = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                    // Console.WriteLine("-1;" + _Ts + ";" + "Data error or null value");
-                    // Console.WriteLine(e.Message);
+
+                   Console.WriteLine(e.Message);
                 }
                 Thread.Sleep(ms_sleep);
             }
